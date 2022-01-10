@@ -9,4 +9,8 @@
     <tabs>standard-OtherUserProfile</tabs>
     <tabs>standard-CollaborationGroup</tabs>
     <tabs>standard-File</tabs>
+    <tabs>SunContact__c</tabs>
+    <tabs>SunGroup__c</tabs>
+    <tabs>SunVisit__c</tabs>
+    <tabs>SunCase__c</tabs>
 </CustomApplication>

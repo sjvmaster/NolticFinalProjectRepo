@@ -23,5 +23,9 @@
     <tabs>standard-OtherUserProfile</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-Forecasting3</tabs>
+    <tabs>SunContact__c</tabs>
+    <tabs>SunGroup__c</tabs>
+    <tabs>SunVisit__c</tabs>
+    <tabs>SunCase__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

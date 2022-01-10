@@ -116,7 +116,7 @@ public with sharing class SampleDataGenerator {
                 if (index <= 4) {
                     kid.AttendanceGroup__c = groups[0].Id;
                 } else {
-                    kid.AttendanceGroup__c = groups[1].Id;
+                    kid.AttendanceGroup__c = groups[1].Id; 
                 }
                 kids.add(kid);
                 index++;

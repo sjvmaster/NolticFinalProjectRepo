@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SunContact</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SunContacts</value>
+    </caseValues>
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- AssignedGroup --></label>
+        <name>AssignedGroup__c</name>
+        <relationshipLabel><!-- Teacher --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- AttendanceGroup --></label>
+        <name>AttendanceGroup__c</name>
+        <relationshipLabel><!-- Attendees --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BirthDate --></label>
+        <name>BirthDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Parent --></label>
+        <name>PrimaryParent__c</name>
+        <relationshipLabel><!-- Kids --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Secondary Parent --></label>
+        <name>SecondaryParent__c</name>
+        <relationshipLabel><!-- Kids --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>SunContact Layout (Kid)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Kid --></label>
+        <name>Kid</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Parent --></label>
+        <name>Parent</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Teacher --></label>
+        <name>Teacher</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

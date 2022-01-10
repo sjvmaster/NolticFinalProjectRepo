@@ -5,4 +5,8 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <tabs>standard-AppLauncher</tabs>
+    <tabs>SunContact__c</tabs>
+    <tabs>SunGroup__c</tabs>
+    <tabs>SunVisit__c</tabs>
+    <tabs>SunCase__c</tabs>
 </CustomApplication>

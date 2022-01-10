@@ -6,4 +6,8 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <tabs>standard-Chatter</tabs>
     <tabs>standard-Sites</tabs>
+    <tabs>SunContact__c</tabs>
+    <tabs>SunGroup__c</tabs>
+    <tabs>SunVisit__c</tabs>
+    <tabs>SunCase__c</tabs>
 </CustomApplication>

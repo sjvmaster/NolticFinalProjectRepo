@@ -6,5 +6,9 @@
     <label>LightningBolt</label>
     <navType>Standard</navType>
     <tabs>standard-LightningBoltHome</tabs>
+    <tabs>SunContact__c</tabs>
+    <tabs>SunGroup__c</tabs>
+    <tabs>SunVisit__c</tabs>
+    <tabs>SunCase__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

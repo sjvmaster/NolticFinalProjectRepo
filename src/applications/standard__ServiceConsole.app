@@ -179,7 +179,23 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
+    <tabs>SunContact__c</tabs>
+    <tabs>SunGroup__c</tabs>
+    <tabs>SunVisit__c</tabs>
+    <tabs>SunCase__c</tabs>
     <workspaceConfig>
+        <mappings>
+            <tab>SunCase__c</tab>
+        </mappings>
+        <mappings>
+            <tab>SunContact__c</tab>
+        </mappings>
+        <mappings>
+            <tab>SunGroup__c</tab>
+        </mappings>
+        <mappings>
+            <tab>SunVisit__c</tab>
+        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

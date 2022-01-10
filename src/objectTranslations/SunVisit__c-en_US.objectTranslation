@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SunVisit</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SunVisits</value>
+    </caseValues>
+    <fields>
+        <label><!-- ArrivalTime --></label>
+        <name>ArrivalTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- LeavingTime --></label>
+        <name>LeavingTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Superior --></label>
+        <name>Superior__c</name>
+        <relationshipLabel><!-- Visits (as Superior) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Visitor --></label>
+        <name>Visitor__c</name>
+        <relationshipLabel><!-- Visits --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
