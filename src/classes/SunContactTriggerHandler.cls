@@ -40,7 +40,7 @@ public with sharing class SunContactTriggerHandler {
         Map<Id, Boolean> groupsCanUpdate = new Map<Id, Boolean>();
         for (Id groupId: groupsToUpdate.keySet()) {
             groupsCanUpdate.put(groupId,
-                    currentGroupsSizes.get(groupId).AssignedGroups__r.size() + groupsToUpdate.get(groupId)
+                    currentGroupsSizes.get(groupId).AttendanceGroups__r.size() + groupsToUpdate.get(groupId)
                             <= currentGroupsSizes.get(groupId).MaxKidsInGroup__c);
         }
 

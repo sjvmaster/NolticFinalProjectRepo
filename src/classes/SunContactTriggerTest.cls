@@ -127,8 +127,8 @@ public with sharing class SunContactTriggerTest {
         // validate
         List<SunContact__c> updatedContacts1 = [SELECT Id FROM SunContact__c WHERE AttendanceGroup__c = :testGroup1.Id];
         List<SunContact__c> updatedContacts2 = [SELECT Id FROM SunContact__c WHERE AttendanceGroup__c = :testGroup2.Id];
-        System.assert(updatedContacts1.size()==0);
-        System.assert(updatedContacts2.size()==30);
+        System.assert(updatedContacts1.size()==15);
+        System.assert(updatedContacts2.size()==15);
     }
 
 }

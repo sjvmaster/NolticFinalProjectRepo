@@ -1,0 +1,13 @@
+<!-- Attendance Sheet Child -->
+<template>
+    <template if:true={attendee}>
+        <div class="slds-m-around_medium">
+            <lightning-input type="checkbox" label="Present"  onchange={handleIsPresentChange} disabled={isDisabled} checked={isPresent}> </lightning-input>
+            <p class="slds-m-top_medium"> {attendee.Name} </p>
+            <lightning-input type="time" label="Arrival Time:" value={arrivalTime} onchange={handleArrivalTimeChange} disabled={isNotModifiable} required={isModifiable}></lightning-input>
+            <lightning-input type="time" label="Leaving Time:" value={leavingTime} onchange={handleLeavingTimeChange} disabled={isNotModifiable} required={isModifiable}></lightning-input>
+            <lightning-combobox label="Superior:" options={superiorOptions} value={superior} onchange={handleSuperiorChange} disabled={isNotModifiable} required={isModifiable}></lightning-combobox>
+            <lightning-button variant="brand" label="Submit Visit" onclick={handleSubmitVisit} disabled={isNotModifiable}></lightning-button>
+        </div>
+    </template>
+</template>

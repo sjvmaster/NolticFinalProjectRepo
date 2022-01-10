@@ -1,0 +1,25 @@
+<!--
+ - Created by Ivan.Sokolov on 10.01.2022.
+ -->
+
+<!-- Attendance Sheet -->
+<template>
+    <lightning-card title='Attendance Sheet'>
+        <lightning-input label="Date" type="Date" date-style="short" value={currentDate} onchange={handleDateChange}></lightning-input>
+<!--        <template if:true={attendees.data}>-->
+            <ul class='slds-p-left_medium'>
+                <template for:each={attendees.data} for:item='attendee'>
+                    <li key={attendee.Id} class="slds-p-bottom_medium">
+                        <c-attendance-sheet-child
+                                key={attendee.Id}
+                                attendee={attendee}
+                                visit-date={currentDate}
+                                superior-options={parentContacts}
+                        >
+                        </c-attendance-sheet-child >
+                    </li>
+                </template>
+            </ul>
+<!--        </template>-->
+    </lightning-card>
+</template>
