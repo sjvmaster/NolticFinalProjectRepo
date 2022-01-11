@@ -3,9 +3,31 @@ import {refreshApex} from "@salesforce/apex";
 import addVisit from '@salesforce/apex/AttendanceSheetController.addVisit';
 
 export default class AttendanceSheetChild extends LightningElement {
-    @api attendee;
+    @api attendeeInternal;
+    @api attendeeVisits;
+    @api
+    set attendee(value) {
+        this.attendeeInternal = value;
+        this.attendeeVisits = value.SunVisits__r;
+    }
+    get attendee(){
+        return this.attendeeInternal;
+    }
     @api superiorOptions;
-    @api visitDate;
+
+    @api
+    set visitDateFromParent(value){
+        this.visitDate = value;
+        this.attendeeVisits = undefined;
+        this.arrivalTime=undefined;
+        this.leavingTime=undefined;
+        this.superior=undefined;
+        this.isPresent=false;
+    };
+    get visitDateFromParent(){
+        return this.visitDate;
+    }
+    visitDate;
     @track arrivalTime;
     @track leavingTime;
     @track superior;
@@ -18,19 +40,17 @@ export default class AttendanceSheetChild extends LightningElement {
         return !this.isModifiable;
     }
     get isDisabled() {
-        console.log(this.attendee.SunVisits__r);
-        if (this.attendee.SunVisits__r) {
-            console.log(this.attendee.SunVisits__r[0].ArrivalTime__c);
+        console.log('arrivalTime after in isDisabled' + this.arrivalTime);
+        if (this.attendeeVisits) {
             this.isPresent = true;
-            let arrivalMs = this.attendee.SunVisits__r[0].ArrivalTime__c;
-            let leavingMs = this.attendee.SunVisits__r[0].LeavingTime__c;
+            let arrivalMs = this.attendeeVisits[0].ArrivalTime__c;
+            let leavingMs = this.attendeeVisits[0].LeavingTime__c;
             let arrivalDt = new Date(arrivalMs);
             let leavingDt = new Date(leavingMs);
-            console.log(this.arrivalTime);
 
             this.arrivalTime = arrivalDt.getUTCHours().toString().padStart(2,'0') + ':' + arrivalDt.getUTCMinutes().toString().padStart(2,'0');
             this.leavingTime = leavingDt.getUTCHours().toString().padStart(2,'0') + ':' + leavingDt.getUTCMinutes().toString().padStart(2,'0');
-            this.superior = this.attendee.SunVisits__r[0].Superior__c;
+            this.superior = this.attendeeVisits[0].Superior__c;
             return true
         }
         return false;
@@ -46,14 +66,13 @@ export default class AttendanceSheetChild extends LightningElement {
             }, true);
             if (allValid) {
                 addVisit({
-                    visitorId: this.attendee.Id,
+                    visitorId: this.attendeeInternal.Id,
                     visitDate: this.visitDate,
                     arrivalTime: this.arrivalTime,
                     leavingTime: this.leavingTime,
                     superiorId: this.superior,
                 }).then(result => {
                     console.log('Visit created');
-                    refreshApex()
                 }).catch(error => console.log(error));
             } else {
                 event.target.setCustomValidity('Please update the invalid fields entries and try again.');
@@ -65,6 +84,7 @@ export default class AttendanceSheetChild extends LightningElement {
         this.isPresent = event.target.checked;
     }
     handleArrivalTimeChange(event) {
+        console.log('something changed arrival time');
         let arrivalTimeControl = event.target;
         this.arrivalTime = arrivalTimeControl.value;
         if (this.isPresent) {

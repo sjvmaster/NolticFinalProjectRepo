@@ -6,13 +6,14 @@ import {refreshApex} from "@salesforce/apex";
 
 export default class AttendanceSheet extends LightningElement {
     @api recordId;
-    @track currentDateValue;
+    @api currentDateValue;
+    @api attendees;
     @track parentContacts;
     @track error;
-
+    @api
     get currentDate(){
         if (this.currentDateValue) {
-            console.log(this.currentDateValue);
+            console.log('current date in parent' + this.currentDateValue);
             return this.currentDateValue;
         }
         else{
@@ -27,7 +28,18 @@ export default class AttendanceSheet extends LightningElement {
         }
     }
     @wire(getContactsByGroupId, {groupId: '$recordId', dateStr: '$currentDateValue' })
-    attendees;
+    wiredAttendees({error, data}){
+        console.log('in wired')
+        if (data) {
+            console.log('in wired' + data);
+            this.attendees = data;
+            this.error = undefined;
+        } else if (error) {
+            console.log('in error' + error);
+            this.error = error;
+            this.attendees = undefined;
+        }
+    };
     @wire(getParentContacts, {})
     wiredParentsContacts({error, data}){
         if (data) {
@@ -35,7 +47,7 @@ export default class AttendanceSheet extends LightningElement {
             for(let i=0; i<data.length; i++) {
                 tempArray.push({ label: data[i].Name, value: data[i].Id});
             }
-            this.parentContacts = tempArray
+            this.parentContacts = tempArray;
             this.error = undefined;
         } else if (error) {
             this.error = error;
@@ -45,7 +57,5 @@ export default class AttendanceSheet extends LightningElement {
 
     handleDateChange(event){
         this.currentDateValue = event.target.value;
-        refreshApex(this.attendees).catch(error => console.log(error));
     }
-
 }
