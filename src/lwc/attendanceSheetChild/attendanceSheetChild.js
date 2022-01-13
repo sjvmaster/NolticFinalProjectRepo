@@ -17,30 +17,35 @@ export default class AttendanceSheetChild extends LightningElement {
 
     @api
     set visitDateFromParent(value){
+        if (this.visitDate) {
+            this.attendeeVisits=undefined;
+            this.arrivalTime=undefined;
+            this.leavingTime=undefined;
+            this.superior=undefined;
+            this.isPresent=false;
+            this.alreadySubmitted=false;
+        }
         this.visitDate = value;
-        this.attendeeVisits = undefined;
-        this.arrivalTime=undefined;
-        this.leavingTime=undefined;
-        this.superior=undefined;
-        this.isPresent=false;
     };
     get visitDateFromParent(){
         return this.visitDate;
     }
     visitDate;
+    alreadySubmitted;
     @track arrivalTime;
     @track leavingTime;
     @track superior;
     @track isPresent;
 
     get isModifiable(){
-        return !this.isDisabled && this.isPresent;
+        return !this.isDisabled && this.isPresent && !this.alreadySubmitted;
     }
+
     get isNotModifiable(){
         return !this.isModifiable;
     }
+
     get isDisabled() {
-        console.log('arrivalTime after in isDisabled' + this.arrivalTime);
         if (this.attendeeVisits) {
             this.isPresent = true;
             let arrivalMs = this.attendeeVisits[0].ArrivalTime__c;
@@ -51,7 +56,7 @@ export default class AttendanceSheetChild extends LightningElement {
             this.arrivalTime = arrivalDt.getUTCHours().toString().padStart(2,'0') + ':' + arrivalDt.getUTCMinutes().toString().padStart(2,'0');
             this.leavingTime = leavingDt.getUTCHours().toString().padStart(2,'0') + ':' + leavingDt.getUTCMinutes().toString().padStart(2,'0');
             this.superior = this.attendeeVisits[0].Superior__c;
-            return true
+            return true;
         }
         return false;
     }
@@ -72,6 +77,7 @@ export default class AttendanceSheetChild extends LightningElement {
                     leavingTime: this.leavingTime,
                     superiorId: this.superior,
                 }).then(result => {
+                    this.alreadySubmitted = true;
                     console.log('Visit created');
                 }).catch(error => console.log(error));
             } else {
@@ -84,7 +90,6 @@ export default class AttendanceSheetChild extends LightningElement {
         this.isPresent = event.target.checked;
     }
     handleArrivalTimeChange(event) {
-        console.log('something changed arrival time');
         let arrivalTimeControl = event.target;
         this.arrivalTime = arrivalTimeControl.value;
         if (this.isPresent) {
@@ -122,7 +127,6 @@ export default class AttendanceSheetChild extends LightningElement {
     handleSuperiorChange(event) {
         let superiorControl = event.target;
         this.superior = superiorControl.value;
-        console.log('superior' + this.superior);
         if (this.isPresent) {
             if(!this.superior){
                 superiorControl.setCustomValidity('Please Enter the Superior Person');
